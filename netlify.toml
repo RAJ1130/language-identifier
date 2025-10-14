@@ -1,4 +1,3 @@
 [build]
-  # This is the only instruction Netlify needs.
-  # It tells Netlify that the folder containing your website is named "frontend".
   publish = "frontend"
+  command = ""
