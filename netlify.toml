@@ -1,7 +1,4 @@
-# This is the configuration for deploying the frontend on Netlify
 [build]
-  # Base directory: where to run the build command
-  base = "frontend"
-
-  # Publish directory: which folder to upload to the CDN
+  # This is the only instruction Netlify needs.
+  # It tells Netlify that the folder containing your website is named "frontend".
   publish = "frontend"
