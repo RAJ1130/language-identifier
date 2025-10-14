@@ -1,10 +1,7 @@
 services:
-  # This defines your backend web service
   - type: web
     name: language-identifier-backend
     env: node
-    # This is the most important line:
-    # It tells Render to look inside your 'backend' folder
     rootDir: backend
     buildCommand: "npm install"
     startCommand: "node server.js"
