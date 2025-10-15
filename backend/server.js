@@ -1,18 +1,19 @@
-// Import necessary packages
-const express from 'express';
-const cors = require('cors');
-const { franc } = require('franc-min');
-const langs = require('langs'); // Corrected: No curly braces {}
-const fetch = require('node-fetch');
-
-// Create an Express application
+const express = require('express');
+const path = require('path'); // Make sure you have this line
 const app = express();
-const port = 3000;
 
-// Middleware to allow cross-origin requests and parse JSON
-app.use(cors());
-app.use(express.json());
+// --- ADD THIS LINE ---
+// This tells Express to serve any file from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Your other API routes and server code go here...
+
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 // --- Function to fetch language history from Wikipedia ---
 const getLanguageHistory = async (languageName) => {
     // Prepare the language name for the URL query
@@ -84,3 +85,4 @@ app.listen(port, () => {
     console.log(`✅ AI Language Detector server running at http://localhost:${port}`);
 
 });
+
