@@ -1,20 +1,3 @@
-const express = require('express');
-const path = require('path'); // Make sure you have this line
-const app = express();
-
-// --- ADD THIS LINE ---
-// This tells Express to serve any file from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-
-// Your other API routes and server code go here...
-
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Get all necessary HTML elements ---
@@ -127,5 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
 
 
