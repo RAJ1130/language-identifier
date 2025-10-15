@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const historyContainer = document.getElementById('history-content');
 
     // The URL of your running backend server
-    const backendUrl = 'https://language-identifier-770r.onrender.com';
+    const backendUrl = 'http://localhost:3000';
 
     // --- Main function to detect language ---
     const detectLanguage = async () => {
@@ -109,3 +109,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
