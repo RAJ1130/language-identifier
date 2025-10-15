@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const historyContainer = document.getElementById('history-content');
 
     // The URL of your running backend server
-    const backendUrl = 'https://language-identifier-9cqk.onrender.com/detect';
+    const backendUrl = 'https://language-identifier-770r.onrender.com';
 
     // --- Main function to detect language ---
     const detectLanguage = async () => {
@@ -107,4 +107,5 @@ document.addEventListener('DOMContentLoaded', () => {
         micBtn.style.display = 'none';
         micStatus.textContent = "Sorry, your browser doesn't support voice recognition.";
     }
+
 });
