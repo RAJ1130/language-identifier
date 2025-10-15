@@ -1,12 +1,9 @@
-@@ -1,7 +1,10 @@
 services:
   - type: web
     name: language-identifier-backend
-    # This is the most important line. It tells Render to use a Node.js environment.Code has comments. Press enter to view.
     env: node
-    # This tells Render to look inside your 'backend' folder.
     rootDir: backend
-    # These are the commands to build and start your server.
     buildCommand: "npm install"
     startCommand: "node server.js"
+
 
