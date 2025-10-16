@@ -43,6 +43,30 @@ app.post('/detect', async (req, res) => {
 app.listen(port, () => {
     console.log(`✅ Server with LibreTranslate AI running at http://localhost:${port}`);
 });
+
+// server.js
+
+// Make sure all required packages are here
+const express = require('express');
+const cors = require('cors');
+const axios = require('axios');
+
+const app = express();
+
+// THIS IS A CRITICAL FIX FOR RENDER
+// It tells your server to use the port Render provides
+const port = process.env.PORT || 3000;
+
+// Middleware setup
+app.use(cors());
+app.use(express.json());
+
+// ... (your app.post('/detect', ...) route goes here) ...
+
+// Make sure your server listens on the correct port variable
+app.listen(port, () => {
+    console.log(`✅ Server is running and listening on port ${port}`);
+});
 // ... the rest of your code ...
 const getLanguageHistory = async (languageName) => {
     // Prepare the language name for the URL query
@@ -114,6 +138,7 @@ app.listen(port, () => {
     console.log(`✅ AI Language Detector server running at http://localhost:${port}`);
 
 });
+
 
 
 
