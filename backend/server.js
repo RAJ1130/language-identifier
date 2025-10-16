@@ -22,6 +22,11 @@ app.use(express.json());
 app.listen(port, () => {
     console.log(`✅ Server is running and listening on port ${port}`);
 });
+
+// Add this GET route to handle the root URL
+app.get('/', (req, res) => {
+    res.send('✅ AI Language Detector backend is running!');
+});
 // ... the rest of your code ...
 const getLanguageHistory = async (languageName) => {
     // Prepare the language name for the URL query
@@ -93,6 +98,7 @@ app.listen(port, () => {
     console.log(`✅ AI Language Detector server running at http://localhost:${port}`);
 
 });
+
 
 
 
