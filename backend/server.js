@@ -1,13 +1,27 @@
 // Import necessary packages
 const express = require('express');
-const cors = require('cors');
+const cors = require('cors'); // <-- FIX 1: Make sure this line exists (around line 2)
 const { franc } = require('franc-min');
-const langs = require('langs'); // Corrected: No curly braces {}
+const langs = require('langs');
 const fetch = require('node-fetch');
 
 // Create an Express application
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+// --- THIS IS THE MOST IMPORTANT FIX ---
+// Use the cors middleware to allow cross-origin requests
+app.use(cors()); // <-- FIX 2: Add this line here (around line 11)
+
+// Middleware to parse JSON
+app.use(express.json());
+
+// Add a welcome route for the root URL
+app.get('/', (req, res) => {
+    res.send('✅ AI Language Detector backend is running!');
+});
+
+// ... the rest of your code ...
 const getLanguageHistory = async (languageName) => {
     // Prepare the language name for the URL query
     const languageQuery = encodeURIComponent(`${languageName} language`);
@@ -78,6 +92,7 @@ app.listen(port, () => {
     console.log(`✅ AI Language Detector server running at http://localhost:${port}`);
 
 });
+
 
 
 
