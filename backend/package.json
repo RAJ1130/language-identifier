@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/RAJ1130/language-identifier#readme",
   "dependencies": {
+    "axios": "^1.12.2",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "franc-min": "^6.2.0",
