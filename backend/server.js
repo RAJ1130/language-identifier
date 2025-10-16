@@ -1,4 +1,4 @@
-// server.js - Using the DetectLanguage.com API
+// server.js - Using the free LibreTranslate API
 
 const express = require('express');
 const cors = require('cors');
@@ -11,9 +11,6 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// --- API KEY ---
-const apiKey = "b01d8171ff6540909c374e9db06e606d"; // <-- Paste your API key here
-
 // --- API ROUTE ---
 app.post('/detect', async (req, res) => {
     const { text } = req.body;
@@ -23,16 +20,13 @@ app.post('/detect', async (req, res) => {
     }
 
     try {
-        // Make the API request to DetectLanguage.com
-        const response = await axios.post("https://ws.detectlanguage.com/0.2/detect", {
+        // Make the API request to the public LibreTranslate server
+        const response = await axios.post("https://libretranslate.de/detect", {
             q: text
-        }, {
-            headers: {
-                'Authorization': `Bearer ${apiKey}`
-            }
         });
 
-        const detectedLang = response.data.data.detections[0].language; // e.g., 'en'
+        // The API returns an array of possible languages
+        const detectedLang = response.data[0].language; // e.g., 'en'
 
         res.json({
             languageName: detectedLang,
@@ -41,13 +35,13 @@ app.post('/detect', async (req, res) => {
         });
 
     } catch (error) {
-        console.error("ERROR:", error.response.data);
-        res.status(500).json({ error: 'Failed to detect language with DetectLanguage.com' });
+        console.error("ERROR:", error);
+        res.status(500).json({ error: 'Failed to detect language with LibreTranslate.' });
     }
 });
 
 app.listen(port, () => {
-    console.log(`✅ Server with DetectLanguage.com AI running at http://localhost:${port}`);
+    console.log(`✅ Server with LibreTranslate AI running at http://localhost:${port}`);
 });
 // ... the rest of your code ...
 const getLanguageHistory = async (languageName) => {
@@ -120,6 +114,7 @@ app.listen(port, () => {
     console.log(`✅ AI Language Detector server running at http://localhost:${port}`);
 
 });
+
 
 
 
