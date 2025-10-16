@@ -1,5 +1,5 @@
 // Import necessary packages
-const express = require('express');
+const express from 'express';
 const cors = require('cors');
 const { franc } = require('franc-min');
 const langs = require('langs'); // Corrected: No curly braces {}
@@ -78,6 +78,7 @@ app.listen(port, () => {
     console.log(`✅ AI Language Detector server running at http://localhost:${port}`);
 
 });
+
 
 
 
