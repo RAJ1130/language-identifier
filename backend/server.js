@@ -1,20 +1,49 @@
+// server.js - Using the free LibreTranslate API
+
 const express = require('express');
-const path = require('path'); // Make sure you have this line
+const cors = require('cors');
+const axios = require('axios'); // For making API requests
+
 const app = express();
+const port = process.env.PORT || 3000;
 
-// --- ADD THIS LINE ---
-// This tells Express to serve any file from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+// --- CONFIGURATION ---
+app.use(cors());
+app.use(express.json());
 
+// --- API ROUTE ---
+app.post('/detect', async (req, res) => {
+    const { text } = req.body;
 
-// Your other API routes and server code go here...
+    if (!text) {
+        return res.status(400).json({ error: 'Text is required.' });
+    }
 
+    try {
+        // Make the API request to the public LibreTranslate server
+        const response = await axios.post("https://libretranslate.de/detect", {
+            q: text
+        });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+        // The API returns an array of possible languages
+        const detectedLang = response.data[0].language; // e.g., 'en'
+
+        res.json({
+            languageName: detectedLang,
+            languageCode: detectedLang,
+            history: `History for ${detectedLang} would be fetched here.`
+        });
+
+    } catch (error) {
+        console.error("ERROR:", error);
+        res.status(500).json({ error: 'Failed to detect language with LibreTranslate.' });
+    }
 });
-// --- Function to fetch language history from Wikipedia ---
+
+app.listen(port, () => {
+    console.log(`✅ Server with LibreTranslate AI running at http://localhost:${port}`);
+});
+// ... the rest of your code ...
 const getLanguageHistory = async (languageName) => {
     // Prepare the language name for the URL query
     const languageQuery = encodeURIComponent(`${languageName} language`);
@@ -85,4 +114,12 @@ app.listen(port, () => {
     console.log(`✅ AI Language Detector server running at http://localhost:${port}`);
 
 });
+
+
+
+
+
+
+
+
 
