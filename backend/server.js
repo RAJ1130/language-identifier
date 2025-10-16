@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // --- API KEY ---
-const apiKey = "YOUR_API_KEY_HERE"; // <-- Paste your API key here
+const apiKey = "b01d8171ff6540909c374e9db06e606d"; // <-- Paste your API key here
 
 // --- API ROUTE ---
 app.post('/detect', async (req, res) => {
@@ -120,6 +120,7 @@ app.listen(port, () => {
     console.log(`✅ AI Language Detector server running at http://localhost:${port}`);
 
 });
+
 
 
 
